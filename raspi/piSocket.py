@@ -5,15 +5,14 @@ import socket
 HOST = "100.84.40.97"  # Standard loopback interface address (localhost)
 PORT = 65432  # Port to listen on (non-privileged ports are > 1023)
 
-while True:
-    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-        s.bind((HOST, PORT))
-        s.listen()
-        conn, addr = s.accept()
-        with conn:
-            print(f"Connected by {addr}")
-            while True:
-                data = conn.recv(1024)
-                if not data:
-                    break
-                conn.sendall("coocoo".encode())
+BUFFER_SIZE = 20 #NOrmally 1024 but we want a fast response
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+s.bind((HOST, PORT))
+s.listen(1)
+conn, addr = s.accept()
+print("Connction address: ", addr)
+while 1:
+  data = conn.recv(BUFFER_SIZE)
+  if not data: break
+  print("received data: ", data)
+conn.close()
