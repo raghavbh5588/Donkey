@@ -9,8 +9,8 @@ s.bind(('100.84.40.97', port))
 print ("socket binded to %s" %(port))
  
 # put the socket into listening mode
-s.listen(5)    
-print ("socket is listening")           
+# s.listen(5)    
+# print ("socket is listening")           
  
 # a forever loop until we interrupt it or
 # an error occurs
