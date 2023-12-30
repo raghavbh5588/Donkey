@@ -1,13 +1,15 @@
-# echo-client.py
-
 import socket
+import time
 
-HOST = "100.84.40.97"  # The server's hostname or IP address
-PORT = 65432  # The port used by the server
+HOST = "100.113.29.118"  # The server's hostname or IP address
+PORT = 3000  # The port used by the server
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+s.connect((HOST, PORT))
 
-with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-    s.connect((HOST, PORT))
-    s.sendall(b"Hello, world")
-    data = s.recv(1024)
-
-print(f"Received {data!r}")
+while True:
+        s.sendall(b"0.849;-0.483")
+        time.sleep(0.05)
+        s.sendall(b"coocoo")
+        time.sleep(0.05)
+        s.sendall(b"cnom")
+        time.sleep(0.05)

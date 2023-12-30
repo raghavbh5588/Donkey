@@ -1,20 +1,37 @@
 import pygame
-pygame.init()
 joysticks = []
-clock = pygame.time.Clock()
-keepPlaying = True
 
-# for al the connected joysticks
-for i in range(0, pygame.joystick.get_count()):
-    # create an Joystick object in our list
-    joysticks.append(pygame.joystick.Joystick(i))
-    # initialize the appended joystick (-1 means last array item)
-    joysticks[-1].init()
-    # print a statement telling what the name of the controller is
-    print ("Detected joystick "),joysticks[-1].get_name(),"'"
-print(joysticks)
-while keepPlaying:
-    clock.tick(60)
-    for event in pygame.event.get():
-        # The 0 button is the 'a' button, 1 is the 'b' button, 2 is the 'x' button, 3 is the 'y' button
-        print(event)
+def initiateController():
+    pygame.init()
+    for i in range(0, pygame.joystick.get_count()):
+        joysticks.append(pygame.joystick.Joystick(i))
+        joysticks[-1].init()
+
+def awaitCommand():
+    while True:
+        for event in pygame.event.get():
+            if event.type == 1538:
+                return event.dict("Button")
+
+def translate(value, min, max):
+    range = max - min
+    value = value + 1
+    add = (value/2) * range
+    throttle = min + add
+    return throttle
+
+def streamControls():
+    streamControls.stream = True
+    def buttonReading():
+        for event in pygame.event.get():
+            if event.type == 1539 & event.dict['button'] == 2:
+                streamControls.stream = False
+    def joyReading():
+        while streamControls.stream:
+            throttle = pygame.joystick.Joystick.get_axis(0)
+            throttle = translate(throttle, 0, 180)
+            steer = pygame.joystick.Joystick.get_axis(3)
+            steer = translate(steer, 45, 120)
+            ctrls = tuple(throttle, steer)
+            #publush ctrls
+    #Start loops

@@ -1,0 +1,29 @@
+Event Types:
+    Button/bumper click => 1539
+    Button release/bumper => 1540
+    Joy movment => 1536
+    Arrow click => 1538
+
+Button Assignments (Button):
+    A => 0
+    B => 1
+    X => 2
+    Y => 3
+    Left joy click => 8
+    Right joy click => 9
+    Menu => 7
+    Picture => 6
+    Right bumper => 5
+    Left bumper => 4
+
+Joy Axis (Axis):
+    Left up/down => 1
+    Left right/left => 0
+    Right up/down => 3
+    Right right/left => 2
+
+Arrow Assignments (Value):
+    Right => (1,0)
+    Left => (-1,0)
+    Up => (0,1)
+    Down => (0,-1)
